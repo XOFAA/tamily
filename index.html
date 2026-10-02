@@ -2,201 +2,608 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convite 🍻</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd6e7" />
+  <title>Laura, uma pergunta 👀</title>
+
+  <!-- prévia do link no WhatsApp -->
+  <meta property="og:title" content="Laura, tenho uma pergunta 👀" />
+  <meta property="og:description" content="abre aí, é rapidinho (e muito sério)" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      --pink: #ff4d8d;
+      --pink-dark: #e0336f;
+      --pink-soft: #ffe4ef;
+      --ink: #3b1d2e;
+      --muted: #8a5a72;
+      --card: rgba(255, 255, 255, 0.82);
+      color-scheme: light;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
+    html, body { height: 100%; }
+
     body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #111827, #7c2d12);
+      min-height: 100dvh;
+      font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(160deg, #fff0f6 0%, #ffd6e7 55%, #ffc2d9 100%);
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* corações flutuando no fundo */
+    .bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       overflow: hidden;
-      color: white;
-      padding: 20px;
+      z-index: 0;
+    }
+    .bg span {
+      position: absolute;
+      bottom: -40px;
+      font-size: 22px;
+      opacity: .35;
+      animation: rise linear infinite;
+    }
+    @keyframes rise {
+      to { transform: translateY(-115vh) rotate(25deg); }
     }
 
     .card {
+      position: relative;
+      z-index: 1;
       width: 100%;
       max-width: 420px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(14px);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .9);
       border-radius: 28px;
-      padding: 32px 24px;
+      padding: 32px 22px 24px;
       text-align: center;
-      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+      box-shadow: 0 20px 60px rgba(224, 51, 111, .18);
+    }
+
+    .screen { display: none; }
+    .screen.active {
+      display: block;
+      animation: pop .35s cubic-bezier(.2, 1.4, .4, 1);
+    }
+    @keyframes pop {
+      from { opacity: 0; transform: scale(.94) translateY(8px); }
+    }
+
+    .face {
+      font-size: 4.5rem;
+      line-height: 1;
+      margin-bottom: 14px;
+      display: inline-block;
+      animation: bob 1.6s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 12px;
+      font-size: clamp(1.6rem, 7vw, 2.1rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 10px;
     }
+    h1 .name { color: var(--pink); }
 
-    p {
-      font-size: 1rem;
-      opacity: .85;
-      margin-bottom: 28px;
-    }
-
-    .emoji {
-      font-size: 4rem;
-      margin-bottom: 18px;
-      animation: pulse 1.5s infinite;
-    }
-
-    .buttons {
-      width: 100%;
-      height: 210px;
-      position: relative;
-      margin-top: 10px;
+    .sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 24px;
     }
 
     button {
+      font-family: inherit;
       border: none;
-      padding: 14px 28px;
-      border-radius: 999px;
-      font-size: 1rem;
-      font-weight: 800;
       cursor: pointer;
-      transition: .15s;
-      white-space: nowrap;
+      touch-action: manipulation;
     }
 
-    button:active {
-      transform: scale(.95);
+    .btn {
+      background: var(--pink);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(255, 77, 141, .35);
+      transition: transform .15s, background .2s;
+    }
+    .btn:active { transform: scale(.95); }
+    .btn:disabled { opacity: .5; }
+
+    /* --- pergunta --- */
+    .buttons {
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     #yesBtn {
-      background: #22c55e;
-      color: white;
-      box-shadow: 0 10px 25px rgba(34,197,94,.35);
-      position: absolute;
-      left: 55px;
-      top: 0;
+      --s: 1;
+      font-size: calc(1.1rem * var(--s));
+      padding: calc(14px * var(--s)) calc(30px * var(--s));
+      transition: font-size .25s, padding .25s, transform .15s;
+      animation: glow 1.8s ease-in-out infinite;
+    }
+    @keyframes glow {
+      50% { box-shadow: 0 10px 34px rgba(255, 77, 141, .6); }
     }
 
     #noBtn {
-      background: #ef4444;
-      color: white;
-      box-shadow: 0 10px 25px rgba(239,68,68,.35);
+      --s: 1;
+      background: #fff;
+      color: var(--muted);
+      border: 2px solid #f3c6d8;
+      font-size: calc(1.1rem * var(--s));
+      font-weight: 600;
+      padding: calc(12px * var(--s)) calc(26px * var(--s));
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: font-size .25s, padding .25s;
+    }
+    #noBtn.fugitive {
+      position: fixed;
+      z-index: 50;
+      margin: 0;
+      transition: left .28s cubic-bezier(.3, 1.5, .5, 1), top .28s cubic-bezier(.3, 1.5, .5, 1), font-size .25s, padding .25s;
+    }
+    #noBtn.gave-up {
+      background: var(--pink);
+      color: #fff;
+      border-color: var(--pink);
+      box-shadow: 0 10px 24px rgba(255, 77, 141, .35);
+    }
+
+    .status {
+      min-height: 2.6em;
+      margin-top: 8px;
+      font-size: .95rem;
+      color: var(--pink-dark);
+      font-weight: 500;
+    }
+
+    .fine {
+      margin-top: 14px;
+      font-size: .72rem;
+      color: var(--muted);
+      opacity: .75;
+    }
+
+    /* --- escolhas --- */
+    .chips {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .chip {
+      background: #fff;
+      border: 2px solid #f8d3e2;
+      border-radius: 18px;
+      padding: 14px 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      transition: transform .12s, border-color .2s, background .2s;
+    }
+    .chip .em { display: block; font-size: 1.8rem; margin-bottom: 4px; }
+    .chip:active { transform: scale(.95); }
+    .chip[aria-pressed="true"] {
+      border-color: var(--pink);
+      background: var(--pink-soft);
+    }
+
+    /* --- ingresso --- */
+    .ticket {
+      position: relative;
+      text-align: left;
+      background: #fff;
+      border: 2px dashed var(--pink);
+      border-radius: 20px;
+      padding: 18px 18px 14px;
+      margin: 6px 0 20px;
+    }
+    .ticket::before, .ticket::after {
+      content: "";
       position: absolute;
-      right: 55px;
-      top: 0;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      margin-top: -11px;
+      border-radius: 50%;
+      background: #ffd6e7;
+    }
+    .ticket::before { left: -13px; }
+    .ticket::after { right: -13px; }
+    .ticket .tag {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+    .ticket dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 12px;
+      font-size: .95rem;
+    }
+    .ticket dt { color: var(--muted); }
+    .ticket dd { font-weight: 600; }
+    .barcode {
+      height: 34px;
+      margin-top: 14px;
+      border-radius: 4px;
+      background: repeating-linear-gradient(90deg,
+        var(--ink) 0 2px, transparent 2px 4px,
+        var(--ink) 4px 5px, transparent 5px 8px,
+        var(--ink) 8px 11px, transparent 11px 13px);
+      opacity: .85;
     }
 
-    .footer {
-      margin-top: 16px;
-      font-size: .82rem;
-      opacity: .65;
+    .link {
+      background: none;
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 14px;
+      text-decoration: underline;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
+    /* confete */
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      overflow: hidden;
+    }
+    .confetti span {
+      position: absolute;
+      top: -40px;
+      font-size: 26px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translate(var(--dx), 110vh) rotate(var(--rot)); }
     }
 
-    @media (max-width: 420px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-
-      .buttons {
-        height: 240px;
-      }
-
-      button {
-        padding: 13px 22px;
-        font-size: .95rem;
-      }
-
-      #yesBtn {
-        left: 35px;
-      }
-
-      #noBtn {
-        right: 35px;
-      }
+    .shake { animation: shake .35s; }
+    @keyframes shake {
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
 
-    @media (max-width: 340px) {
-      #yesBtn {
-        left: 15px;
-      }
-
-      #noBtn {
-        right: 15px;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      .face, .bg span, #yesBtn { animation: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <div class="emoji">🍻</div>
+  <div class="bg" id="bg" aria-hidden="true"></div>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
 
-    <h1>Bora tomar uma hoje?</h1>
+  <main class="card">
 
-    <p>Convite oficial e sem possibilidade de recusa.</p>
+    <!-- 1. intro -->
+    <section class="screen active" id="s-intro">
+      <div class="face">👋</div>
+      <h1>Oi, <span class="name">Laura</span></h1>
+      <p class="sub">Tenho uma pergunta muito séria pra te fazer.<br>Fiz até um site. Sim, um site inteiro.</p>
+      <button class="btn" id="startBtn">Tá, pergunta logo 👀</button>
+    </section>
 
-    <div class="buttons" id="buttonsArea">
-      <button id="yesBtn">Sim 😎</button>
-      <button id="noBtn">Não 😔</button>
-    </div>
+    <!-- 2. a pergunta -->
+    <section class="screen" id="s-ask">
+      <div class="face" id="face">🥺</div>
+      <h1><span class="name">Laura</span>, quer sair comigo?</h1>
+      <p class="sub">num date de verdade, com direito a eu me arrumar e tudo</p>
 
-    <div class="footer">escolha com sabedoria...</div>
-  </div>
+      <div class="buttons">
+        <button class="btn" id="yesBtn">Sim 💘</button>
+        <button id="noBtn">Não 😔</button>
+      </div>
+
+      <p class="status" id="status" aria-live="polite"></p>
+      <p class="fine">*ao clicar em sim você concorda em dividir a sobremesa</p>
+    </section>
+
+    <!-- 3. aceitou -->
+    <section class="screen" id="s-yes">
+      <div class="face">🥳</div>
+      <h1>EU SABIA!!! 💘</h1>
+      <p class="sub" id="yesMsg"></p>
+      <p class="sub" style="margin-bottom:14px"><b>Agora escolhe o rolê:</b></p>
+      <div class="chips" data-field="role">
+        <button class="chip" data-value="Cinema 🍿"><span class="em">🍿</span>Cinema</button>
+        <button class="chip" data-value="Pizza 🍕"><span class="em">🍕</span>Pizza</button>
+        <button class="chip" data-value="Japa 🍣"><span class="em">🍣</span>Japa</button>
+        <button class="chip" data-value="Sorvete/açaí 🍦"><span class="em">🍦</span>Sorvete/açaí</button>
+        <button class="chip" data-value="Barzinho 🍻"><span class="em">🍻</span>Barzinho</button>
+        <button class="chip" data-value="Surpresa 🤫"><span class="em">🤫</span>Me surpreende</button>
+      </div>
+    </section>
+
+    <!-- 4. quando -->
+    <section class="screen" id="s-when">
+      <div class="face">📅</div>
+      <h1>E quando?</h1>
+      <p class="sub">pode escolher, eu desmarco qualquer coisa</p>
+      <div class="chips" data-field="when">
+        <button class="chip" data-value="Hoje mesmo 😳"><span class="em">😳</span>Hoje mesmo</button>
+        <button class="chip" data-value="Amanhã"><span class="em">🌙</span>Amanhã</button>
+        <button class="chip" data-value="Fim de semana"><span class="em">🎉</span>Fim de semana</button>
+        <button class="chip" data-value="Tu que manda 👑"><span class="em">👑</span>Tu que manda</button>
+      </div>
+    </section>
+
+    <!-- 5. ingresso -->
+    <section class="screen" id="s-ticket">
+      <div class="face">🎟️</div>
+      <h1>Tá confirmado!</h1>
+      <p class="sub">teu ingresso oficial, não perde hein</p>
+
+      <div class="ticket">
+        <div class="tag">INGRESSO VIP · ADMITE 1 LAURA</div>
+        <dl>
+          <dt>Evento</dt><dd>Date com a Laura 💘</dd>
+          <dt>Rolê</dt><dd id="tRole"></dd>
+          <dt>Quando</dt><dd id="tWhen"></dd>
+          <dt>Dress code</dt><dd>qualquer um (tu vai tá linda igual)</dd>
+          <dt>Validade</dt><dd>não expira</dd>
+        </dl>
+        <div class="barcode"></div>
+      </div>
+
+      <button class="btn" id="sendBtn">Confirmar no WhatsApp 💌</button>
+      <br>
+      <button class="link" id="redoBtn">quero mudar a escolha</button>
+    </section>
+
+  </main>
 
   <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const buttonsArea = document.getElementById("buttonsArea");
+    // ====== CONFIGURA AQUI ======
+    // teu número com DDI + DDD, só números. Ex: "5592999999999"
+    // se deixar vazio, o WhatsApp abre pra ela escolher pra quem mandar
+    const WHATSAPP = "";
+    // ============================
 
-    const phone = "5592993795370";
-    const message = encodeURIComponent("Bora tomar uma hoje? 🍻 Eu aceito 😎");
+    const $ = (id) => document.getElementById(id);
+    const yesBtn = $("yesBtn");
+    const noBtn = $("noBtn");
+    const face = $("face");
+    const statusEl = $("status");
+    const choice = { role: "", when: "" };
 
-    yesBtn.addEventListener("click", () => {
-      window.location.href = `https://wa.me/${phone}?text=${message}`;
-    });
-
-    function moveNoButton() {
-      const padding = 8;
-
-      const areaWidth = buttonsArea.clientWidth;
-      const areaHeight = buttonsArea.clientHeight;
-
-      const btnWidth = noBtn.offsetWidth;
-      const btnHeight = noBtn.offsetHeight;
-
-      const maxX = areaWidth - btnWidth - padding;
-      const maxY = areaHeight - btnHeight - padding;
-
-      const randomX = Math.floor(Math.random() * (maxX - padding + 1)) + padding;
-      const randomY = Math.floor(Math.random() * (maxY - padding + 1)) + padding;
-
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.right = "auto";
-      noBtn.style.top = `${randomY}px`;
+    function show(id) {
+      document.querySelectorAll(".screen").forEach((s) => s.classList.toggle("active", s.id === id));
+      window.scrollTo(0, 0);
     }
 
-    noBtn.addEventListener("mouseenter", moveNoButton);
-    noBtn.addEventListener("mouseover", moveNoButton);
+    $("startBtn").addEventListener("click", () => show("s-ask"));
+
+    // ---------- o botão "não" que foge ----------
+    const MAX_TRIES = 12;
+    const noLabels = [
+      "Não 😔", "Tem certeza?", "Pensa bem 🤔", "Pensa direito 🥺", "Laura… 🥹",
+      "Vou chorar 😭", "Não faz isso", "Erro 404 🤖", "Botão quebrado",
+      "Tá difícil né", "Desiste 🙏", "Última vez…"
+    ];
+    const faces = ["🥺", "🤨", "😟", "😢", "😭", "💔", "🫠", "🤖", "😵‍💫", "🥲", "🙏", "😮‍💨"];
+    const lines = [
+      "",
+      "ei, esse botão é só decorativo",
+      "percebeu que ele foge de ti?",
+      "o sim tá crescendo… só comentando",
+      "eu programei isso pra nunca deixar 😇",
+      "tu é persistente, gostei",
+      "o coitado do não tá ficando pequenininho",
+      "erro: opção “não” não encontrada",
+      "já tentou com a outra mão?",
+      "isso aí é um sim com passos extras",
+      "minha mãe disse que eu ia conseguir",
+      "ok… o botão tá cansando"
+    ];
+
+    let tries = 0;
+    let lastDodge = 0;
+    let gaveUp = false;
+
+    function dodge(px, py) {
+      if (gaveUp) return;
+      const now = Date.now();
+      if (now - lastDodge < 200) return;
+      lastDodge = now;
+
+      tries++;
+      if (navigator.vibrate) navigator.vibrate(25);
+
+      if (tries >= MAX_TRIES) return giveUp();
+
+      const i = Math.min(tries, noLabels.length - 1);
+      noBtn.textContent = noLabels[i];
+      face.textContent = faces[i];
+      statusEl.textContent = lines[i];
+
+      noBtn.style.setProperty("--s", Math.max(0.6, 1 - tries * 0.04));
+      yesBtn.style.setProperty("--s", Math.min(1.7, 1 + tries * 0.07));
+
+      moveNo(px, py);
+    }
+
+    function moveNo(px, py) {
+      const cur = noBtn.getBoundingClientRect();
+      if (!noBtn.classList.contains("fugitive")) {
+        // sai do lugar onde está e começa a fugir pela tela toda
+        noBtn.style.left = cur.left + "px";
+        noBtn.style.top = cur.top + "px";
+        noBtn.classList.add("fugitive");
+        noBtn.offsetWidth; // força o reflow pra animar a partir daqui
+      }
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const m = 14;
+      const w = noBtn.offsetWidth;
+      const h = noBtn.offsetHeight;
+      const yes = yesBtn.getBoundingClientRect();
+      if (px == null) { px = cur.left + cur.width / 2; py = cur.top + cur.height / 2; }
+
+      let best = null, bestScore = -1;
+      for (let k = 0; k < 40; k++) {
+        const x = m + Math.random() * Math.max(0, vw - w - 2 * m);
+        const y = m + Math.random() * Math.max(0, vh - h - 2 * m);
+        const hitsYes = !(x + w < yes.left - 16 || x > yes.right + 16 || y + h < yes.top - 16 || y > yes.bottom + 16);
+        if (hitsYes) continue;
+        const dFinger = Math.hypot(x + w / 2 - px, y + h / 2 - py);
+        const score = Math.min(dFinger, 320) + Math.random() * 80;
+        if (score > bestScore) { bestScore = score; best = { x, y }; }
+      }
+      if (!best) best = { x: m, y: m };
+
+      noBtn.style.left = best.x + "px";
+      noBtn.style.top = best.y + "px";
+    }
+
+    function giveUp() {
+      // o "não" desiste e volta pro lugar virando um "sim"
+      gaveUp = true;
+      noBtn.classList.remove("fugitive");
+      noBtn.style.left = noBtn.style.top = "";
+      noBtn.style.setProperty("--s", 1);
+      noBtn.classList.add("gave-up", "shake");
+      noBtn.textContent = "Tá bom, SIM 💘";
+      face.textContent = "😌";
+      statusEl.textContent = "o botão desistiu. ele também acha que tu deve ir";
+    }
+
+    // celular: foge no toque (antes do clique acontecer)
     noBtn.addEventListener("touchstart", (e) => {
+      if (gaveUp) return; // deixa o toque virar clique normal
       e.preventDefault();
-      moveNoButton();
-    });
+      const t = e.touches[0];
+      dodge(t.clientX, t.clientY);
+    }, { passive: false });
+    // computador: foge quando o mouse chega perto
+    noBtn.addEventListener("mouseenter", (e) => dodge(e.clientX, e.clientY));
+    // segurança (teclado, clique que escapou etc.)
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      moveNoButton();
+      if (gaveUp) return sayYes();
+      dodge(e.clientX || null, e.clientY || null);
     });
+
+    window.addEventListener("resize", () => {
+      if (!noBtn.classList.contains("fugitive")) return;
+      const r = noBtn.getBoundingClientRect();
+      noBtn.style.left = Math.min(r.left, window.innerWidth - r.width - 14) + "px";
+      noBtn.style.top = Math.min(r.top, window.innerHeight - r.height - 14) + "px";
+    });
+
+    // ---------- sim ----------
+    yesBtn.addEventListener("click", sayYes);
+
+    function sayYes() {
+      noBtn.hidden = true;
+      $("yesMsg").textContent = tries === 0
+        ? "De primeira?! 😳 nem precisou do botão fugindo"
+        : `Depois de ${tries} tentativa${tries > 1 ? "s" : ""} de fugir… mas EU SABIA 😌`;
+      show("s-yes");
+      burst(55);
+    }
+
+    // ---------- escolhas ----------
+    document.querySelectorAll(".chips").forEach((group) => {
+      group.addEventListener("click", (e) => {
+        const chip = e.target.closest(".chip");
+        if (!chip) return;
+        group.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c === chip));
+        choice[group.dataset.field] = chip.dataset.value;
+        setTimeout(() => {
+          if (group.dataset.field === "role") {
+            show("s-when");
+          } else {
+            $("tRole").textContent = choice.role;
+            $("tWhen").textContent = choice.when;
+            show("s-ticket");
+            burst(40);
+          }
+        }, 280);
+      });
+    });
+
+    $("redoBtn").addEventListener("click", () => show("s-yes"));
+
+    $("sendBtn").addEventListener("click", () => {
+      const fuga = tries === 0
+        ? "(aceitei de primeira, nem tentei fugir 😌)"
+        : `(tentei dizer não ${tries}x mas o botão não deixou 😂)`;
+      const msg = `Aceito o date! 💘\nRolê: ${choice.role}\nQuando: ${choice.when}\n${fuga}`;
+      window.location.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    });
+
+    // ---------- enfeites ----------
+    const hearts = ["💖", "💘", "💕", "✨", "🎉", "🥰", "💗"];
+
+    function burst(n) {
+      const box = $("confetti");
+      for (let i = 0; i < n; i++) {
+        const s = document.createElement("span");
+        s.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.fontSize = 18 + Math.random() * 18 + "px";
+        s.style.setProperty("--dx", (Math.random() * 120 - 60) + "px");
+        s.style.setProperty("--rot", (Math.random() * 720 - 360) + "deg");
+        s.style.animationDuration = 2.2 + Math.random() * 2.3 + "s";
+        s.style.animationDelay = Math.random() * 0.6 + "s";
+        s.addEventListener("animationend", () => s.remove());
+        box.appendChild(s);
+      }
+    }
+
+    (function floatingHearts() {
+      const bg = $("bg");
+      for (let i = 0; i < 14; i++) {
+        const s = document.createElement("span");
+        s.textContent = ["💗", "💕", "🤍", "💖"][i % 4];
+        s.style.left = Math.random() * 100 + "%";
+        s.style.fontSize = 14 + Math.random() * 18 + "px";
+        s.style.animationDuration = 9 + Math.random() * 10 + "s";
+        s.style.animationDelay = -Math.random() * 15 + "s";
+        bg.appendChild(s);
+      }
+    })();
   </script>
 
 </body>
