@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#ffe3bf" />
-  <title>Ana, sobre amanhã 👀</title>
+  <title>Cleo, sobre quarta 👀</title>
 
   <!-- prévia do link no WhatsApp -->
-  <meta property="og:title" content="Ana, sobre amanhã… 👀" />
+  <meta property="og:title" content="Cleo, sobre quarta… 👀" />
   <meta property="og:description" content="aviso oficial da Central de Confirmação de Dates™" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -318,8 +318,8 @@
     <!-- 1. intro -->
     <section class="screen active" id="s-intro">
       <div class="face">📞</div>
-      <h1>Olá, <span class="name">Ana</span>!</h1>
-      <p class="sub">Aqui é da Central de Confirmação de Dates™.<br>Consta no sistema um date marcado pra <b>amanhã</b>. Precisamos confirmar uns dados.</p>
+      <h1>Olá, <span class="name">Cleo</span>!</h1>
+      <p class="sub">Aqui é da Central de Confirmação de Dates™.<br>Consta no sistema um date marcado pra <b>quarta que vem</b>. Precisamos confirmar uns dados.</p>
       <button class="btn" id="startBtn">Kkkk ok, pode falar 👀</button>
       <p class="fine">sua ligação é muito importante pra nós</p>
     </section>
@@ -327,7 +327,7 @@
     <!-- 2. a pergunta -->
     <section class="screen" id="s-ask">
       <div class="face" id="face">🧐</div>
-      <h1>O date de amanhã tá de pé?</h1>
+      <h1>O date de quarta tá de pé?</h1>
       <p class="sub">responda com sinceridade (ou não, o sistema só aceita uma resposta)</p>
 
       <div class="buttons">
@@ -375,10 +375,10 @@
       <p class="sub">guarde este comprovante, ele pode ser cobrado</p>
 
       <div class="ticket">
-        <div class="tag">PROTOCOLO Nº 1510-2026 · OK ✅</div>
+        <div class="tag">PROTOCOLO Nº 2110-2026 · OK ✅</div>
         <dl>
-          <dt>Participante</dt><dd>Ana</dd>
-          <dt>Quando</dt><dd>Amanhã · qui, 15/10</dd>
+          <dt>Participante</dt><dd>Cleo</dd>
+          <dt>Quando</dt><dd>Quarta · 21/10</dd>
           <dt>Rolê</dt><dd id="tRole"></dd>
           <dt>Horário</dt><dd id="tWhen"></dd>
           <dt>Dress code</dt><dd>o que for confortável</dd>
@@ -420,7 +420,7 @@
     const noLabels = [
       "Vou furar 😬", "Certeza?", "Hmm, não", "Em manutenção 🚧", "Volte mais tarde",
       "Erro 404 🤖", "Sem sinal 📵", "Fila de espera", "Furo bloqueado",
-      "Tenta de novo", "Para Ana 😭", "Última vez…"
+      "Tenta de novo", "Para Cleo 😭", "Última vez…"
     ];
     const faces = ["🧐", "🤨", "😐", "🚧", "🙃", "🤖", "📵", "⏳", "🚨", "🫠", "😮‍💨", "😵‍💫"];
     const lines = [
@@ -571,7 +571,7 @@
       const fuga = tries === 0
         ? "(confirmei de primeira, nem tentei furar 😌)"
         : `(tentei furar ${tries}x mas o botão não deixou 😂)`;
-      const msg = `📋 Protocolo nº 1510-2026\nAmanhã tá de pé! ✅\nRolê: ${choice.role}\nHorário: ${choice.when}\n${fuga}`;
+      const msg = `📋 Protocolo nº 2110-2026\nQuarta tá de pé! ✅\nRolê: ${choice.role}\nHorário: ${choice.when}\n${fuga}`;
       window.location.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
     });
 
