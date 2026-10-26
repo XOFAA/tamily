@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#ffe3bf" />
-  <title>Cleo, sobre quarta 👀</title>
+  <meta name="theme-color" content="#cdf3ec" />
+  <title>Tâmily, seu chamado foi aberto 🩺</title>
 
   <!-- prévia do link no WhatsApp -->
-  <meta property="og:title" content="Cleo, sobre quarta… 👀" />
-  <meta property="og:description" content="aviso oficial da Central de Confirmação de Dates™" />
+  <meta property="og:title" content="Tâmily, seu chamado foi aberto… 🩺" />
+  <meta property="og:description" content="Central de Atendimento de Dates™ · abertura de chamado" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,11 +16,11 @@
 
   <style>
     :root {
-      --accent: #ff8a3d;
-      --accent-dark: #d9631c;
-      --accent-soft: #fff1e0;
-      --ink: #3a2a1e;
-      --muted: #8a6a52;
+      --accent: #12a594;
+      --accent-dark: #0b7a6e;
+      --accent-soft: #e3f8f4;
+      --ink: #1f3a37;
+      --muted: #5b7f7a;
       --card: rgba(255, 255, 255, 0.82);
       color-scheme: light;
     }
@@ -38,7 +38,7 @@
       min-height: 100dvh;
       font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", sans-serif;
       color: var(--ink);
-      background: linear-gradient(160deg, #fffaf0 0%, #ffe3bf 55%, #ffd29e 100%);
+      background: linear-gradient(160deg, #f6fffd 0%, #cdf3ec 55%, #a9e8de 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -48,7 +48,7 @@
       -webkit-user-select: none;
     }
 
-    /* corações flutuando no fundo */
+    /* coisinhas de hospital flutuando no fundo */
     .bg {
       position: fixed;
       inset: 0;
@@ -79,7 +79,7 @@
       border-radius: 28px;
       padding: 32px 22px 24px;
       text-align: center;
-      box-shadow: 0 20px 60px rgba(217, 99, 28, .18);
+      box-shadow: 0 20px 60px rgba(11, 122, 110, .18);
     }
 
     .screen { display: none; }
@@ -132,7 +132,7 @@
       font-weight: 600;
       padding: 14px 30px;
       border-radius: 999px;
-      box-shadow: 0 10px 24px rgba(255, 138, 61, .35);
+      box-shadow: 0 10px 24px rgba(18, 165, 148, .35);
       transition: transform .15s, background .2s;
     }
     .btn:active { transform: scale(.95); }
@@ -156,14 +156,14 @@
       animation: glow 1.8s ease-in-out infinite;
     }
     @keyframes glow {
-      50% { box-shadow: 0 10px 34px rgba(255, 138, 61, .6); }
+      50% { box-shadow: 0 10px 34px rgba(18, 165, 148, .6); }
     }
 
     #noBtn {
       --s: 1;
       background: #fff;
       color: var(--muted);
-      border: 2px solid #f5d6b8;
+      border: 2px solid #bfe6df;
       font-size: calc(1.1rem * var(--s));
       font-weight: 600;
       padding: calc(12px * var(--s)) calc(26px * var(--s));
@@ -181,7 +181,7 @@
       background: var(--accent);
       color: #fff;
       border-color: var(--accent);
-      box-shadow: 0 10px 24px rgba(255, 138, 61, .35);
+      box-shadow: 0 10px 24px rgba(18, 165, 148, .35);
     }
 
     .status {
@@ -208,7 +208,7 @@
     }
     .chip {
       background: #fff;
-      border: 2px solid #f8e0c8;
+      border: 2px solid #c9ece6;
       border-radius: 18px;
       padding: 14px 8px;
       font-size: 1rem;
@@ -217,6 +217,11 @@
       transition: transform .12s, border-color .2s, background .2s;
     }
     .chip .em { display: block; font-size: 1.8rem; margin-bottom: 4px; }
+    .chip small { display: block; font-size: .72rem; color: var(--muted); margin-top: 2px; }
+    .chips.one { grid-template-columns: 1fr; }
+    .chips.one .chip { display: flex; align-items: center; gap: 12px; text-align: left; padding: 10px 14px; }
+    .chips.one .chip .em { font-size: 1.5rem; margin: 0; }
+    .dot { width: 14px; height: 14px; border-radius: 50%; flex: none; }
     .chip:active { transform: scale(.95); }
     .chip[aria-pressed="true"] {
       border-color: var(--accent);
@@ -241,7 +246,7 @@
       height: 22px;
       margin-top: -11px;
       border-radius: 50%;
-      background: #ffe3bf;
+      background: #cdf3ec;
     }
     .ticket::before { left: -13px; }
     .ticket::after { right: -13px; }
@@ -317,79 +322,79 @@
 
     <!-- 1. intro -->
     <section class="screen active" id="s-intro">
-      <div class="face">📞</div>
-      <h1>Olá, <span class="name">Cleo</span>!</h1>
-      <p class="sub">Aqui é da Central de Confirmação de Dates™.<br>Consta no sistema um date marcado pra <b>quarta que vem</b>. Precisamos confirmar uns dados.</p>
-      <button class="btn" id="startBtn">Kkkk ok, pode falar 👀</button>
-      <p class="fine">sua ligação é muito importante pra nós</p>
+      <div class="face">🏥</div>
+      <h1>Olá, <span class="name">Tâmily</span>!</h1>
+      <p class="sub">Aqui é da Central de Atendimento de Dates™.<br>Recebemos sua dúvida: <i>“precisa abrir um chamado pra marcar um date?”</i><br><b>Precisa sim.</b> Mas relaxa, a gente abre agora.</p>
+      <button class="btn" id="startBtn">Abrir chamado 🩺</button>
+      <p class="fine">atendimento humanizado, conforme o POP</p>
     </section>
 
     <!-- 2. a pergunta -->
     <section class="screen" id="s-ask">
-      <div class="face" id="face">🧐</div>
-      <h1>O date de quarta tá de pé?</h1>
-      <p class="sub">responda com sinceridade (ou não, o sistema só aceita uma resposta)</p>
+      <div class="face" id="face">🩺</div>
+      <h1>Paciente aceita o date?</h1>
+      <p class="sub">marque uma opção. o sistema já foi avisado de que só existe uma resposta correta</p>
 
       <div class="buttons">
-        <button class="btn" id="yesBtn">Tá de pé ✅</button>
-        <button id="noBtn">Vou furar 😬</button>
+        <button class="btn" id="yesBtn">Aceito ✅</button>
+        <button id="noBtn">Recuso 😬</button>
       </div>
 
       <p class="status" id="status" aria-live="polite"></p>
-      <p class="fine">*ao confirmar você concorda em dividir a batata frita</p>
+      <p class="fine">*ao aceitar você declara estar ciente de que a sobremesa será dividida</p>
     </section>
 
-    <!-- 3. confirmou -->
+    <!-- 3. triagem (quando) -->
     <section class="screen" id="s-yes">
       <div class="face">🥳</div>
-      <h1>Confirmado com sucesso!</h1>
+      <h1>Chamado aberto!</h1>
       <p class="sub" id="yesMsg"></p>
-      <p class="sub" style="margin-bottom:14px"><b>Agora selecione o rolê:</b></p>
-      <div class="chips" data-field="role">
-        <button class="chip" data-value="O que a gente combinou 😌"><span class="em">😌</span>O combinado</button>
-        <button class="chip" data-value="Cinema 🍿"><span class="em">🍿</span>Cinema</button>
-        <button class="chip" data-value="Pizza 🍕"><span class="em">🍕</span>Pizza</button>
-        <button class="chip" data-value="Japa 🍣"><span class="em">🍣</span>Japa</button>
-        <button class="chip" data-value="Barzinho 🍻"><span class="em">🍻</span>Barzinho</button>
-        <button class="chip" data-value="Surpresa 🤫"><span class="em">🤫</span>Me surpreende</button>
+      <p class="sub" style="margin-bottom:14px"><b>Agora a classificação de risco:</b><br>quão urgente é esse date?</p>
+      <div class="chips one" data-field="when">
+        <button class="chip" data-value="🔴 Emergência · hoje mesmo"><span class="dot" style="background:#e5484d"></span><span>Emergência<small>hoje mesmo, sem fila</small></span></button>
+        <button class="chip" data-value="🟠 Muito urgente · essa semana"><span class="dot" style="background:#f76b15"></span><span>Muito urgente<small>essa semana</small></span></button>
+        <button class="chip" data-value="🟡 Urgente · no fim de semana"><span class="dot" style="background:#ffc53d"></span><span>Urgente<small>no fim de semana</small></span></button>
+        <button class="chip" data-value="🟢 Pouco urgente · na minha folga do plantão"><span class="dot" style="background:#30a46c"></span><span>Pouco urgente<small>na minha folga do plantão</small></span></button>
       </div>
     </section>
 
-    <!-- 4. horário -->
+    <!-- 4. procedimento (rolê) -->
     <section class="screen" id="s-when">
-      <div class="face">⏰</div>
-      <h1>Que horas?</h1>
-      <p class="sub">o sistema recomenda considerar o tempo real de se arrumar</p>
-      <div class="chips" data-field="when">
-        <button class="chip" data-value="19h"><span class="em">🌇</span>19h</button>
-        <button class="chip" data-value="20h"><span class="em">🌙</span>20h</button>
-        <button class="chip" data-value="21h"><span class="em">🦉</span>21h</button>
-        <button class="chip" data-value="Quando eu ficar pronta (aka +40 min) 💅"><span class="em">💅</span>Quando eu ficar pronta (aka +40 min)</button>
+      <div class="face">💊</div>
+      <h1>Prescrição do rolê</h1>
+      <p class="sub">dose única, via oral, sem contraindicação</p>
+      <div class="chips" data-field="role">
+        <button class="chip" data-value="Pizza 🍕"><span class="em">🍕</span>Pizza<small>1 fatia de 8/8h</small></button>
+        <button class="chip" data-value="Japa 🍣"><span class="em">🍣</span>Japa<small>uso tópico de shoyu</small></button>
+        <button class="chip" data-value="Cinema 🍿"><span class="em">🍿</span>Cinema<small>repouso relativo</small></button>
+        <button class="chip" data-value="Barzinho 🍻"><span class="em">🍻</span>Barzinho<small>hidratação venosa… digo, gelada</small></button>
+        <button class="chip" data-value="Açaí 🍧"><span class="em">🍧</span>Açaí<small>suplemento nutricional</small></button>
+        <button class="chip" data-value="Surpresa 🤫"><span class="em">🤫</span>Me surpreende<small>conduta a critério</small></button>
       </div>
     </section>
 
-    <!-- 5. ingresso -->
+    <!-- 5. comprovante -->
     <section class="screen" id="s-ticket">
       <div class="face">📋</div>
-      <h1>Protocolo gerado!</h1>
-      <p class="sub">guarde este comprovante, ele pode ser cobrado</p>
+      <h1>Chamado registrado!</h1>
+      <p class="sub">guarde este comprovante, ele pode ser cobrado na alta</p>
 
       <div class="ticket">
-        <div class="tag">PROTOCOLO Nº 2110-2026 · OK ✅</div>
+        <div class="tag" id="tTag">CHAMADO Nº — · EM ATENDIMENTO 🩺</div>
         <dl>
-          <dt>Participante</dt><dd>Cleo</dd>
-          <dt>Quando</dt><dd>Quarta · 21/10</dd>
-          <dt>Rolê</dt><dd id="tRole"></dd>
-          <dt>Horário</dt><dd id="tWhen"></dd>
-          <dt>Dress code</dt><dd>o que for confortável</dd>
-          <dt>Furo</dt><dd>proibido. multa de 1 sorvete 🍦</dd>
+          <dt>Solicitante</dt><dd>Enf. Tâmily</dd>
+          <dt>Prioridade</dt><dd id="tWhen"></dd>
+          <dt>Conduta</dt><dd id="tRole"></dd>
+          <dt>SLA</dt><dd>resposta em até 24h (ou antes, se for vermelho)</dd>
+          <dt>Plantão</dt><dd>respeitado. se cair no plantão, remarca sem multa</dd>
+          <dt>Furo</dt><dd>só com atestado médico 🩹</dd>
         </dl>
         <div class="barcode"></div>
       </div>
 
       <button class="btn" id="sendBtn">Mandar no WhatsApp 📲</button>
       <br>
-      <button class="link" id="redoBtn">quero mudar a escolha</button>
+      <button class="link" id="redoBtn">quero mudar a triagem</button>
     </section>
 
   </main>
@@ -407,6 +412,8 @@
     const face = $("face");
     const statusEl = $("status");
     const choice = { role: "", when: "" };
+    const ticketNo = "#" + Math.floor(1000 + Math.random() * 9000) + "-TML";
+    $("tTag").textContent = `CHAMADO Nº ${ticketNo} · EM ATENDIMENTO 🩺`;
 
     function show(id) {
       document.querySelectorAll(".screen").forEach((s) => s.classList.toggle("active", s.id === id));
@@ -418,24 +425,24 @@
     // ---------- o botão "não" que foge ----------
     const MAX_TRIES = 12;
     const noLabels = [
-      "Vou furar 😬", "Certeza?", "Hmm, não", "Em manutenção 🚧", "Volte mais tarde",
-      "Erro 404 🤖", "Sem sinal 📵", "Fila de espera", "Furo bloqueado",
-      "Tenta de novo", "Para Cleo 😭", "Última vez…"
+      "Recuso 😬", "Alta a pedido?", "Aguardando leito", "Sistema caiu 🖥️", "Falta assinatura",
+      "Sem vaga na UTI", "Isolamento 🦠", "Fila do SUS", "Prescrição negada",
+      "Precisa de laudo", "Para Tâmily 😭", "Último plantão…"
     ];
-    const faces = ["🧐", "🤨", "😐", "🚧", "🙃", "🤖", "📵", "⏳", "🚨", "🫠", "😮‍💨", "😵‍💫"];
+    const faces = ["🩺", "🤨", "🛏️", "🖥️", "✍️", "🚑", "🦠", "⏳", "💊", "📄", "😮‍💨", "😵‍💫"];
     const lines = [
       "",
       "opa, esse botão é só decorativo",
-      "percebeu que ele foge de ti?",
-      "o estagiário escondeu esse botão",
-      "o “tá de pé” tá crescendo… só comentando",
-      "erro: opção “furar” não encontrada",
-      "já tentou desligar e ligar de novo?",
-      "sua tentativa de furar está na posição 847 da fila",
-      "furo detectado. acionando protocolo de emergência 🚨",
-      "isso aí é um sim com passos extras",
-      "tu tá gastando bateria à toa",
-      "ok… o botão tá cansando"
+      "percebeu que ele foge de ti? igual paciente na hora da medicação",
+      "o sistema do hospital caiu. só o “aceito” tá funcionando",
+      "o “aceito” tá crescendo… só comentando",
+      "recusa sem justificativa não consta no POP",
+      "esse botão tá em isolamento de contato. não toque",
+      "sua recusa está na posição 847 da fila da regulação",
+      "verificando sinais vitais… teu “sim” tá taquicárdico 💓",
+      "isso aí é um aceito com passos extras",
+      "tu tá gastando bateria igual monitor sem tomada",
+      "ok… o botão tá pedindo pra ir pro repouso"
     ];
 
     let tries = 0;
@@ -505,9 +512,9 @@
       noBtn.style.left = noBtn.style.top = "";
       noBtn.style.setProperty("--s", 1);
       noBtn.classList.add("gave-up", "shake");
-      noBtn.textContent = "Tá bom, TÁ DE PÉ ✅";
+      noBtn.textContent = "Tá bom, ACEITO ✅";
       face.textContent = "😌";
-      statusEl.textContent = "o botão pediu demissão. ele também acha que tu não deve furar";
+      statusEl.textContent = "o botão pegou atestado. ele também acha que tu deve aceitar";
     }
 
     // celular: foge no toque (antes do clique acontecer)
@@ -539,8 +546,8 @@
     function sayYes() {
       noBtn.hidden = true;
       $("yesMsg").textContent = tries === 0
-        ? "De primeira?! 😳 o sistema ficou até sem graça"
-        : `Foram ${tries} tentativa${tries > 1 ? "s" : ""} de furar. O sistema anotou tudo 📝`;
+        ? "Aceitou de primeira?! 😳 o sistema ficou até sem graça"
+        : `Foram ${tries} tentativa${tries > 1 ? "s" : ""} de recusar. Tá tudo anotado no prontuário 📝`;
       show("s-yes");
       burst(55);
     }
@@ -553,7 +560,7 @@
         group.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c === chip));
         choice[group.dataset.field] = chip.dataset.value;
         setTimeout(() => {
-          if (group.dataset.field === "role") {
+          if (group.dataset.field === "when") {
             show("s-when");
           } else {
             $("tRole").textContent = choice.role;
@@ -569,14 +576,14 @@
 
     $("sendBtn").addEventListener("click", () => {
       const fuga = tries === 0
-        ? "(confirmei de primeira, nem tentei furar 😌)"
-        : `(tentei furar ${tries}x mas o botão não deixou 😂)`;
-      const msg = `📋 Protocolo nº 2110-2026\nQuarta tá de pé! ✅\nRolê: ${choice.role}\nHorário: ${choice.when}\n${fuga}`;
+        ? "(aceitei de primeira, nem tentei recusar 😌)"
+        : `(tentei recusar ${tries}x mas o botão não deixou 😂)`;
+      const msg = `🩺 Chamado ${ticketNo} aberto!\nDate aceito ✅\nPrioridade: ${choice.when}\nConduta: ${choice.role}\n${fuga}`;
       window.location.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
     });
 
     // ---------- enfeites ----------
-    const hearts = ["🎉", "✨", "⭐", "🌼", "🍦", "🥳", "🍟"];
+    const hearts = ["🎉", "✨", "💖", "🩺", "🩹", "🥳", "💊"];
 
     function burst(n) {
       const box = $("confetti");
@@ -598,7 +605,7 @@
       const bg = $("bg");
       for (let i = 0; i < 14; i++) {
         const s = document.createElement("span");
-        s.textContent = ["⭐", "🌼", "☁️", "✨"][i % 4];
+        s.textContent = ["🩺", "💊", "🩹", "💉", "❤️‍🩹", "✨"][i % 6];
         s.style.left = Math.random() * 100 + "%";
         s.style.fontSize = 14 + Math.random() * 18 + "px";
         s.style.animationDuration = 9 + Math.random() * 10 + "s";
