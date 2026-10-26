@@ -324,16 +324,16 @@
     <section class="screen active" id="s-intro">
       <div class="face">🏥</div>
       <h1>Olá, <span class="name">Tâmily</span>!</h1>
-      <p class="sub">Aqui é da Central de Atendimento de Dates™.<br>Recebemos sua dúvida: <i>“precisa abrir um chamado pra marcar um date?”</i><br><b>Precisa sim.</b> Mas relaxa, a gente abre agora.</p>
+      <p class="sub">Aqui é da Central de Regulação de Dates™.<br>Recebemos sua dúvida: <i>“precisa abrir um chamado pra marcar um date?”</i><br><b>Precisa sim.</b> Mas relaxa: diferente do sistema do hospital, esse aqui funciona.</p>
       <button class="btn" id="startBtn">Abrir chamado 🩺</button>
-      <p class="fine">atendimento humanizado, conforme o POP</p>
+      <p class="fine">atendimento humanizado, conforme o POP. sem fila no corredor</p>
     </section>
 
     <!-- 2. a pergunta -->
     <section class="screen" id="s-ask">
       <div class="face" id="face">🩺</div>
       <h1>Paciente aceita o date?</h1>
-      <p class="sub">marque uma opção. o sistema já foi avisado de que só existe uma resposta correta</p>
+      <p class="sub">assinale com caneta azul, sem rasura, senão a coordenação devolve</p>
 
       <div class="buttons">
         <button class="btn" id="yesBtn">Aceito ✅</button>
@@ -341,7 +341,7 @@
       </div>
 
       <p class="status" id="status" aria-live="polite"></p>
-      <p class="fine">*ao aceitar você declara estar ciente de que a sobremesa será dividida</p>
+      <p class="fine">*ao aceitar você declara que não vai falar de caso clínico na mesa (só um pouquinho, vai)</p>
     </section>
 
     <!-- 3. triagem (quando) -->
@@ -355,21 +355,22 @@
         <button class="chip" data-value="🟠 Muito urgente · essa semana"><span class="dot" style="background:#f76b15"></span><span>Muito urgente<small>essa semana</small></span></button>
         <button class="chip" data-value="🟡 Urgente · no fim de semana"><span class="dot" style="background:#ffc53d"></span><span>Urgente<small>no fim de semana</small></span></button>
         <button class="chip" data-value="🟢 Pouco urgente · na minha folga do plantão"><span class="dot" style="background:#30a46c"></span><span>Pouco urgente<small>na minha folga do plantão</small></span></button>
+        <button class="chip" data-value="🔵 Não urgente · quando a escala deixar"><span class="dot" style="background:#0090ff"></span><span>Não urgente<small>quando a escala deixar (ou seja, nunca 🫠)</small></span></button>
       </div>
     </section>
 
     <!-- 4. procedimento (rolê) -->
     <section class="screen" id="s-when">
       <div class="face">💊</div>
-      <h1>Prescrição do rolê</h1>
-      <p class="sub">dose única, via oral, sem contraindicação</p>
+      <h1>Prescrição: a gente tomar uma</h1>
+      <p class="sub">posologia: uma rodada de cada vez. sem aprazamento</p>
       <div class="chips" data-field="role">
-        <button class="chip" data-value="Pizza 🍕"><span class="em">🍕</span>Pizza<small>1 fatia de 8/8h</small></button>
-        <button class="chip" data-value="Japa 🍣"><span class="em">🍣</span>Japa<small>uso tópico de shoyu</small></button>
-        <button class="chip" data-value="Cinema 🍿"><span class="em">🍿</span>Cinema<small>repouso relativo</small></button>
-        <button class="chip" data-value="Barzinho 🍻"><span class="em">🍻</span>Barzinho<small>hidratação venosa… digo, gelada</small></button>
-        <button class="chip" data-value="Açaí 🍧"><span class="em">🍧</span>Açaí<small>suplemento nutricional</small></button>
-        <button class="chip" data-value="Surpresa 🤫"><span class="em">🤫</span>Me surpreende<small>conduta a critério</small></button>
+        <button class="chip" data-value="Cerveja gelada 🍺"><span class="em">🍺</span>Cerveja gelada<small>soro da alma, EV contínuo</small></button>
+        <button class="chip" data-value="Caipirinha 🍋"><span class="em">🍋</span>Caipirinha<small>antisséptico de uso interno</small></button>
+        <button class="chip" data-value="Drink colorido 🍹"><span class="em">🍹</span>Drink colorido<small>medicação de alto custo</small></button>
+        <button class="chip" data-value="Chopp + petisco 🍻"><span class="em">🍻</span>Chopp + petisco<small>hidratação + dieta branda</small></button>
+        <button class="chip" data-value="Vinho 🍷"><span class="em">🍷</span>Vinho<small>uso exclusivo pós-plantão</small></button>
+        <button class="chip" data-value="Me surpreende 🤫"><span class="em">🤫</span>Me surpreende<small>conduta a critério</small></button>
       </div>
     </section>
 
@@ -384,10 +385,11 @@
         <dl>
           <dt>Solicitante</dt><dd>Enf. Tâmily</dd>
           <dt>Prioridade</dt><dd id="tWhen"></dd>
-          <dt>Conduta</dt><dd id="tRole"></dd>
-          <dt>SLA</dt><dd>resposta em até 24h (ou antes, se for vermelho)</dd>
+          <dt>Prescrição</dt><dd id="tRole"></dd>
+          <dt>Evolução</dt><dd>paciente sorridente, estável, aguardando date</dd>
+          <dt>Acompanhante</dt><dd>eu (sem direito a cadeira reclinável)</dd>
           <dt>Plantão</dt><dd>respeitado. se cair no plantão, remarca sem multa</dd>
-          <dt>Furo</dt><dd>só com atestado médico 🩹</dd>
+          <dt>Furo</dt><dd>só com atestado de 15 dias, com CID 🩹</dd>
         </dl>
         <div class="barcode"></div>
       </div>
@@ -425,23 +427,23 @@
     // ---------- o botão "não" que foge ----------
     const MAX_TRIES = 12;
     const noLabels = [
-      "Recuso 😬", "Alta a pedido?", "Aguardando leito", "Sistema caiu 🖥️", "Falta assinatura",
-      "Sem vaga na UTI", "Isolamento 🦠", "Fila do SUS", "Prescrição negada",
-      "Precisa de laudo", "Para Tâmily 😭", "Último plantão…"
+      "Recuso 😬", "Paciente evadiu?", "Aguardando leito", "Sistema caiu 🖥️", "Falta carimbo",
+      "Sem acesso venoso", "Isolamento 🦠", "Fila da regulação", "Sem prescrição",
+      "Passando plantão…", "Para Tâmily 😭", "Último plantão…"
     ];
-    const faces = ["🩺", "🤨", "🛏️", "🖥️", "✍️", "🚑", "🦠", "⏳", "💊", "📄", "😮‍💨", "😵‍💫"];
+    const faces = ["🩺", "🏃‍♀️", "🛏️", "🖥️", "✍️", "💉", "🦠", "⏳", "📄", "💓", "😮‍💨", "😵‍💫"];
     const lines = [
       "",
-      "opa, esse botão é só decorativo",
-      "percebeu que ele foge de ti? igual paciente na hora da medicação",
-      "o sistema do hospital caiu. só o “aceito” tá funcionando",
-      "o “aceito” tá crescendo… só comentando",
-      "recusa sem justificativa não consta no POP",
-      "esse botão tá em isolamento de contato. não toque",
+      "opa, esse botão é igual paciente: foge na hora da medicação",
+      "aguardando leito há 3 dias. igual todo mundo no corredor",
+      "o sistema caiu. agora só no papel, em 3 vias",
+      "recusa sem carimbo e assinatura não vale, enfermeira",
+      "esse botão tá mais difícil que pegar acesso em paciente desidratado 💉",
+      "isolamento de contato. lava as mãos e tenta de novo 🧼",
       "sua recusa está na posição 847 da fila da regulação",
+      "o médico não prescreveu “recusar”. e sem prescrição tu não faz nada, né?",
       "verificando sinais vitais… teu “sim” tá taquicárdico 💓",
-      "isso aí é um aceito com passos extras",
-      "tu tá gastando bateria igual monitor sem tomada",
+      "o botão tá passando plantão. volta em 12h",
       "ok… o botão tá pedindo pra ir pro repouso"
     ];
 
@@ -514,7 +516,7 @@
       noBtn.classList.add("gave-up", "shake");
       noBtn.textContent = "Tá bom, ACEITO ✅";
       face.textContent = "😌";
-      statusEl.textContent = "o botão pegou atestado. ele também acha que tu deve aceitar";
+      statusEl.textContent = "o botão pegou atestado de 3 dias. ele também acha que tu deve aceitar";
     }
 
     // celular: foge no toque (antes do clique acontecer)
@@ -547,7 +549,7 @@
       noBtn.hidden = true;
       $("yesMsg").textContent = tries === 0
         ? "Aceitou de primeira?! 😳 o sistema ficou até sem graça"
-        : `Foram ${tries} tentativa${tries > 1 ? "s" : ""} de recusar. Tá tudo anotado no prontuário 📝`;
+        : `Foram ${tries} tentativa${tries > 1 ? "s" : ""} de recusar. Tá tudo evoluído no prontuário 📝`;
       show("s-yes");
       burst(55);
     }
@@ -578,12 +580,12 @@
       const fuga = tries === 0
         ? "(aceitei de primeira, nem tentei recusar 😌)"
         : `(tentei recusar ${tries}x mas o botão não deixou 😂)`;
-      const msg = `🩺 Chamado ${ticketNo} aberto!\nDate aceito ✅\nPrioridade: ${choice.when}\nConduta: ${choice.role}\n${fuga}`;
+      const msg = `🩺 Chamado ${ticketNo} aberto!\nDate aceito ✅\nPrioridade: ${choice.when}\nPrescrição: ${choice.role}\n${fuga}`;
       window.location.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
     });
 
     // ---------- enfeites ----------
-    const hearts = ["🎉", "✨", "💖", "🩺", "🩹", "🥳", "💊"];
+    const hearts = ["🎉", "✨", "💖", "🩺", "🍻", "🥳", "💊"];
 
     function burst(n) {
       const box = $("confetti");
